@@ -1,0 +1,32 @@
+{
+    "theme_color": "#34495e",
+    "background_color": "#34495e",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "name": "NextMap",
+    "short_name": "NextMap",
+    "description": "A Concept-Map generating AI, with two breathtakingly simple layouts.",
+    "icons": [
+        {
+            "src": "/static/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/static/icon-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/static/icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "/static/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

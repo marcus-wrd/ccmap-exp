@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Concept Maps</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="static/manifest.webmanifest" crossorigin="use-credentials" />
+    <script src="https://kit.fontawesome.com/5b96244ab9.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/dagre@0.7.4/dist/dagre.js"></script>
+    <script src="https://cytoscape.org/cytoscape.js-dagre/cytoscape-dagre.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cytoscape-edgehandles/cytoscape-edgehandles.min.js"></script>
+    <script src="https://cytoscape.org/cytoscape.js-cxtmenu/cytoscape-cxtmenu.js"></script>
+    <link href="static/style.css" rel="stylesheet" crossorigin="use-credentials" />
+</head>
+
+<body>
+    <div id="chat-container">
+        <div id="chat-messages"></div>
+        <div id="input-container">
+            <textarea id="input-message" placeholder="Type a message..." oninput="resizeTextarea()"></textarea>
+            <button id="send-button" onclick="sendMessage()"><i class="fa-regular fa-paper-plane"></i></button>
+        </div>
+    </div>
+    <script src="static/script.js" crossorigin="use-credentials"></script>
+</body>
+
+</html>
