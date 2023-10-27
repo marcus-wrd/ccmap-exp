@@ -118,9 +118,9 @@ async function sendMessage() {
       ],
       layout: {
          name: 'dagre',
-         fit: true,
-         padding: 12,
-         spacingFactor: 1.3 // Adjust this value to find the desired edge length
+         fit: false,
+         padding: 20,
+         spacingFactor: 1.7 // Adjust this value to find the desired edge length
       }
    });
    // Node Context Menu
