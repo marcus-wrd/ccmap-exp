@@ -102,7 +102,7 @@ async function sendMessage() {
                'text-valign': 'center',
                'width': 'label',
                'height': 'label',
-               'padding': '10px'
+               'padding': '5px'
             }
          },
          {
@@ -118,9 +118,9 @@ async function sendMessage() {
       ],
       layout: {
          name: 'dagre',
-         fit: false,
-         padding: 20,
-         spacingFactor: 1.7 // Adjust this value to find the desired edge length
+         fit: true,
+         padding: 13,
+         spacingFactor: 1.2 // Adjust this value to find the desired edge length
       }
    });
    // Node Context Menu
