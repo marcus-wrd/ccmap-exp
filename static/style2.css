@@ -46,7 +46,6 @@ input:hover {
 	content: '';
 	position: absolute;
 	width: 0%;
-	height: 100%;
 	border-bottom: 2px solid white;
 	transition: width 0.3s ease;
 }
@@ -67,7 +66,7 @@ input:hover {
 	transition: width .2s ease;
 }
 
-a {
+#wrapper {
 	color: #ecf0f1;
 	text-decoration: none;
 }
