@@ -66,3 +66,7 @@ a:hover:before {
 	width: 40%;
 	transition: width .2s ease;
 }
+
+a {
+	text-decoration: none;
+}
