@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - CE Chat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Add your styles here, similar to your chat page */
+        * {
+            font-family: 'Montserrat', sans-serif;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, violet, blue);
+            color: #ffffff;
+        }
+        .form-container {
+            width: 300px;
+            margin: 0 auto;
+            padding-top: 100px;
+        }
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 700;
+        }
+        input:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form action="/login" method="post">
+            <label for="username"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" required>
+
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+            <a href="/register"> Register </a>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+</body>
+</html>
