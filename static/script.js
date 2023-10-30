@@ -18,6 +18,7 @@ async function sendMessage() {
 
    // Display the user's message
    const chatMessages = document.getElementById('chat-messages');
+   chatMessages.innerHTML = '';
    chatMessages.innerHTML += `<div class="message">User: ${message2}</div>`;
 
    const cyContainer = document.createElement('div');
@@ -306,6 +307,7 @@ async function sendMessage() {
    }
    document.getElementById('regenerate-btn').style.display = 'block';
    document.getElementById('regenerate-btn').addEventListener('click', function() {
+      document.getElementById('chat-messages').innerHTML = '';
       if (cy) {
          // If cy is defined, get the original message from the cy instance
          const originalMessage = cy.data('originalMessage');
