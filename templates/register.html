@@ -13,7 +13,7 @@
 
             <label for="password"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="password" required>
-            <a href="/login"> Login </a>
+            Have an account already? <a href="/login">Log in</a>
             {% with messages = get_flashed_messages(with_categories=true) %}
               {% if messages %}
                 {% for category, message in messages %}
