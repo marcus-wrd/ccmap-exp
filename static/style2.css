@@ -41,8 +41,8 @@ input:hover {
 	opacity: 0.8;
 }
 
-wrapper:before,
-wrapper:after {
+#wrapper:before,
+#wrapper:after {
 	content: '';
 	position: absolute;
 	width: 0%;
@@ -51,18 +51,18 @@ wrapper:after {
 	transition: width 0.3s ease;
 }
 
-wrapper:before {
+#wrapper:before {
 	bottom: 0;
 	right: 50%;
 }
 
-wrapper:after {
+#wrapper:after {
 	bottom: 0;
 	left: 50%;
 }
 
-wrapper:hover:after,
-wrapper:hover:before {
+#wrapper:hover:after,
+#wrapper:hover:before {
 	width: 40%;
 	transition: width .2s ease;
 }
