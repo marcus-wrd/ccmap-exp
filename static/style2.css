@@ -41,17 +41,27 @@ input:hover {
 	opacity: 0.8;
 }
 
-#wrapper:before,
-#wrapper:after {
-	content: '';
-	position: absolute;
-	width: 0%;
-	border-bottom: 2px solid white;
-	transition: width 0.3s ease;
-}
-
-
-#wrapper {
+a {
+	display: inline-block;
+	position: relative;
 	color: #ecf0f1;
 	text-decoration: none;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #ecf0f1;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
