@@ -304,8 +304,28 @@ async function sendMessage() {
       link.href = "data:image/png;base64," + png64;
       link.click();
    }
+   document.getElementById('regenerate-btn').style.display = 'block';
+   document.getElementById('regenerate-btn').addEventListener('click', function() {
+      if (cy) {
+         // If cy is defined, get the original message from the cy instance
+         const originalMessage = cy.data('originalMessage');
+         if (originalMessage) {
+            // Set the value of the input element to the original message
+            document.getElementById('input-message').value = originalMessage;
+            // Call the sendMessage function
+            sendMessage();
+         } else {
+            alert('Original message not found.');
+         }
+      } else {
+         alert('Concept map not found.');
+      }
+   });
+   // Store the original message in the cy instance's data
+   cy.data('originalMessage', message);
 
 }
+
 
 if ("serviceWorker" in navigator) {
    navigator.serviceWorker.register("static/generate-sw.js");
