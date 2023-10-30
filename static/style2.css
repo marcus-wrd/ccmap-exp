@@ -50,21 +50,6 @@ input:hover {
 	transition: width 0.3s ease;
 }
 
-#wrapper:before {
-	bottom: 0;
-	right: 50%;
-}
-
-#wrapper:after {
-	bottom: 0;
-	left: 50%;
-}
-
-#wrapper:hover:after,
-#wrapper:hover:before {
-	width: 40%;
-	transition: width .2s ease;
-}
 
 #wrapper {
 	color: #ecf0f1;
