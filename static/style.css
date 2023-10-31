@@ -82,6 +82,7 @@ img {
      background-color: #27ae60;
      color: #fff;
      border: none;
+     margin-left: 7px;
      border-radius: 50%;
 }
 button:hover {
