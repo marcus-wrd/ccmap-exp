@@ -1,4 +1,5 @@
 function stfuncdoesntwork() {
+   console.log("teest");
 }
 
 document.getElementById('input-message').addEventListener('input', function() {
