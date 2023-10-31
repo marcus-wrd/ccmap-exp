@@ -50,14 +50,14 @@
  img {
      width: 100%;
 }
- #send-button:hover {
+button:hover {
      background-color: #2ecc71;
 }
 /* FontAwesome Icon styling */
  .fa-paper-plane {
      font-size: 1.2em;
 }
- #send-button {
+button {
      display: flex;
      align-items: center;
      justify-content: center;
