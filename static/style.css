@@ -47,29 +47,13 @@
      max-height: 150px;
     /* Allowing it to expand up to 5 lines */
 }
- img {
+img {
      width: 100%;
 }
-button:hover {
-     background-color: #2ecc71;
-}
+
 /* FontAwesome Icon styling */
  .fa-paper-plane {
      font-size: 1.2em;
-}
-button {
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     width: 40px;
-    /* Adjust width */
-     height: 40px;
-    /* Set height to make it circular */
-     cursor: pointer;
-     background-color: #27ae60;
-     color: #fff;
-     border: none;
-     border-radius: 50%;
 }
 /* Adjusted FontAwesome Icon size */
  .fa-paper-plane {
@@ -87,14 +71,21 @@ button {
      background-color: #465c71;
 }
  button {
-     margin-top: 20px;
-     padding: 10px 20px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 40px;
+    /* Adjust width */
+     height: 40px;
+    /* Set height to make it circular */
      cursor: pointer;
      background-color: #27ae60;
      color: #fff;
      border: none;
-     border-radius: 5px;
-     font-size: 16px;
+     border-radius: 50%;
+}
+button:hover {
+     background-color: #2ecc71;
 }
 /* Add these lines inside the <style> section */
  .fas {
