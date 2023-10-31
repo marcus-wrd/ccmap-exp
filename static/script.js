@@ -1,3 +1,6 @@
+function stfuncdoesntwork() {
+}
+
 document.getElementById('input-message').addEventListener('input', function() {
    const textarea = document.getElementById('input-message');
    textarea.style.height = 'auto';
