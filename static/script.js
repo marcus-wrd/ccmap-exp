@@ -1,5 +1,4 @@
-// Function to resize textarea
-function resizeTextarea() {
+document.getElementById('input-message').addEventListener('input', function() {
    const textarea = document.getElementById('input-message');
    textarea.style.height = 'auto';
    if (textarea.scrollHeight <= 90) { // Allowing it to expand up to 5 lines
@@ -7,7 +6,7 @@ function resizeTextarea() {
    } else {
       textarea.style.height = '90px'; // After 5 lines, restrict to 90px
    }
-}
+});
 
 let cy = null; // global cy variable
 async function sendMessage() {
