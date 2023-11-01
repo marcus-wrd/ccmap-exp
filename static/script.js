@@ -309,7 +309,12 @@ async function sendMessage() {
       link.click();
    }
    document.getElementById('regenerate-btn').style.display = 'block';
-   document.getElementById('regenerate-btn').addEventListener('click', function() {
+   // Store the original message in the cy instance's data
+   cy.data('originalMessage', message);
+
+}
+
+document.getElementById('regenerate-btn').addEventListener('click', function() {
       document.getElementById('chat-messages').innerHTML = '';
       if (cy) {
          // If cy is defined, get the original message from the cy instance
@@ -325,12 +330,7 @@ async function sendMessage() {
       } else {
          alert('Concept map not found.');
       }
-   });
-   // Store the original message in the cy instance's data
-   cy.data('originalMessage', message);
-
-}
-
+});
 
 if ("serviceWorker" in navigator) {
    navigator.serviceWorker.register("static/generate-sw.js");
