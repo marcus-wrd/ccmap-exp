@@ -218,7 +218,12 @@ async function sendMessage() {
             content: 'Mind map',
             select: function () {
                cy.layout({
-                  name: 'fcose'
+                 name: 'elk',
+                 elk: {
+                   zoomToFit: true,
+                   algorithm: 'disco',
+                   separateConnectedComponents: false,
+                 },
                }).run();
             }
          },
