@@ -222,7 +222,7 @@ async function sendMessage() {
                  elk: {
                    zoomToFit: true,
                    algorithm: 'disco',
-                   separateConnectedComponents: false,
+                   componentLayoutAlgorithm: 'stress',
                  },
                }).run();
             }
