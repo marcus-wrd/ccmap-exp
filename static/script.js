@@ -194,7 +194,7 @@ async function sendMessage() {
    cy.cxtmenu({
       selector: 'core',
       commands: [{
-            content: 'dagre',
+            content: 'Concept map 1',
             select: function () {
                cy.layout({
                   name: 'dagre'
@@ -202,15 +202,26 @@ async function sendMessage() {
             }
          },
          {
-            content: 'breadthfirst',
+            content: 'Concept map 2',
             select: function () {
                cy.layout({
-                  name: 'breadthfirst'
+                  name: 'elk'
+                  elk: {
+                     algorithm: 'mrtree',
+                   },
                }).run();
             }
          },
          {
-            content: 'Add Node',
+            content: 'Mind map',
+            select: function () {
+               cy.layout({
+                  name: 'fcose'
+               }).run();
+            }
+         },
+         {
+            content: 'Add node',
             select: addManualNode
          },
          {
