@@ -205,10 +205,12 @@ async function sendMessage() {
             content: 'Concept map 2',
             select: function () {
                cy.layout({
-                  name: 'elk'
-                  elk: {
-                     algorithm: 'mrtree',
-                   },
+                 name: 'elk',
+                 elk: {
+                   zoomToFit: true,
+                   algorithm: 'mrtree',
+                   separateConnectedComponents: false,
+                 },
                }).run();
             }
          },
