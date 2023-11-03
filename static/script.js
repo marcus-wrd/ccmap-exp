@@ -209,6 +209,8 @@ async function sendMessage() {
                  elk: {
                    zoomToFit: true,
                    algorithm: 'mrtree',
+                   spacing.nodeNode: 40,
+                   spacing.edgeNode: 20,
                    separateConnectedComponents: false,
                  },
                }).run();
@@ -218,19 +220,12 @@ async function sendMessage() {
             content: 'Mind map',
             select: function () {
                cy.layout({
-                 name: 'elk',
-                 elk: {
-                   zoomToFit: true,
-                   algorithm: 'layered',
-                   'layered.wrapping.additionalEdgeSpacing': 50,
-                   'spacing.nodeNode': 50,
-                   'spacing.nodeNodeBetweenLayers': 25,
-                   'spacing.edgeNode': 25,
-                   'spacing.edgeNodeBetweenLayers': 20,
-                   'spacing.edgeEdge': 20,
-                   'spacing.edgeEdgeBetweenLayers': 15,
-                   componentLayoutAlgorithm: 'stress',
-                 },
+                 name: 'fcose',
+                 nodeRepulsion: 15000,
+                 idealEdgeLength: 75,
+                 edgeElasticity: 0.34,
+                 numIter: 50000,
+                 gravity: 0.2
                }).run();
             }
          },
