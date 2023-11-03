@@ -221,7 +221,7 @@ async function sendMessage() {
                  name: 'elk',
                  elk: {
                    zoomToFit: true,
-                   algorithm: 'disco',
+                   algorithm: 'layered',
                    'layered.wrapping.additionalEdgeSpacing': 50,
                    'spacing.nodeNode': 50,
                    'spacing.nodeNodeBetweenLayers': 25,
