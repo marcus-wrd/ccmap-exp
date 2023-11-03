@@ -209,8 +209,8 @@ async function sendMessage() {
                  elk: {
                    zoomToFit: true,
                    algorithm: 'mrtree',
-                   spacing.nodeNode: 40,
-                   spacing.edgeNode: 20,
+                   'spacing.nodeNode': 40,
+                   'spacing.edgeNode': 20,
                    separateConnectedComponents: false,
                  },
                }).run();
