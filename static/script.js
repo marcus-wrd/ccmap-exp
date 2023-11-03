@@ -197,7 +197,8 @@ async function sendMessage() {
             content: 'Concept map 1',
             select: function () {
                cy.layout({
-                  name: 'dagre'
+                  animated: true,
+                  name: 'dagre',
                }).run();
             }
          },
@@ -207,6 +208,7 @@ async function sendMessage() {
                cy.layout({
                  name: 'elk',
                  elk: {
+                   animated: true,
                    zoomToFit: true,
                    algorithm: 'mrtree',
                    'spacing.nodeNode': 40,
@@ -225,7 +227,7 @@ async function sendMessage() {
                  idealEdgeLength: 75,
                  edgeElasticity: 0.34,
                  numIter: 50000,
-                 gravity: 0.2
+                 gravity: 0.2,
                }).run();
             }
          },
