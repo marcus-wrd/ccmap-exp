@@ -222,6 +222,13 @@ async function sendMessage() {
                  elk: {
                    zoomToFit: true,
                    algorithm: 'disco',
+                   'layered.wrapping.additionalEdgeSpacing': 50,
+                   'spacing.nodeNode': 50,
+                   'spacing.nodeNodeBetweenLayers': 25,
+                   'spacing.edgeNode': 25,
+                   'spacing.edgeNodeBetweenLayers': 20,
+                   'spacing.edgeEdge': 20,
+                   'spacing.edgeEdgeBetweenLayers': 15,
                    componentLayoutAlgorithm: 'stress',
                  },
                }).run();
