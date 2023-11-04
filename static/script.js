@@ -41,6 +41,9 @@ async function sendMessage() {
 
    const graphData = await response.json();
    for (let node of graphData.nodes) {
+      if (node.data.id == "") {
+         node.data.id = "null"
+      }
       if (!node.data.label) {
          node.data.label = node.data.id;
       }
