@@ -40,6 +40,11 @@ async function sendMessage() {
    });
 
    const graphData = await response.json();
+   // Check if the graphData has nodes and edges
+   if (!graphData || !graphData.nodes || !graphData.edges) {
+      console.error('Invalid graph data:', graphData);
+      return; // Exit the function if the data is not valid
+   }
    for (let node of graphData.nodes) {
       if (node.data.id == "") {
          node.data.id = "null"
@@ -58,12 +63,15 @@ async function sendMessage() {
          edge.data.color = color; // Color the edge
 
          let targetNode = nodes.find(node => node.data.id === edge.data.target);
-         targetNode.data.color = color; // Color the target node
+         if (targetNode) { // Check if targetNode is not undefined
+            targetNode.data.color = color; // Color the target node
+            nodeColorMapping[targetNode.data.id] = color; // Store color mapping
+            // Recursively color the descendants of the target node
+            colorDescendants(targetNode.data.id, color, edges, nodes, nodeColorMapping);
+         } else {
+            console.error('Target node not found for edge:', edge);
+         }
 
-         nodeColorMapping[targetNode.data.id] = color; // Store color mapping
-
-         // Recursively color the descendants of the target node
-         colorDescendants(targetNode.data.id, color, edges, nodes, nodeColorMapping);
       }
    }
 
@@ -84,12 +92,14 @@ async function sendMessage() {
          // Color the edge and target node
          edge.data.color = color;
          let targetNode = graphData.nodes.find(node => node.data.id === edge.data.target);
-         targetNode.data.color = color;
-
-         nodeColorMapping[targetNode.data.id] = color; // Store color mapping
-
-         // Recursively color the descendants of this target node
-         colorDescendants(targetNode.data.id, color, graphData.edges, graphData.nodes, nodeColorMapping);
+         if (targetNode) { // Check if targetNode is not undefined
+            targetNode.data.color = color;
+            nodeColorMapping[targetNode.data.id] = color;
+            // Recursively color the descendants of this target node
+            colorDescendants(targetNode.data.id, color, graphData.edges, graphData.nodes, nodeColorMapping);
+         } else {
+            console.error('Target node not found for edge:', edge);
+         }
       }
    }
 
