@@ -45,6 +45,17 @@ async function sendMessage() {
       console.error('Invalid graph data:', graphData);
       return; // Exit the function if the data is not valid
    }
+
+   // Filter out edges that do not have a target node or the target node is an empty string
+   graphData.edges = graphData.edges.filter(edge => {
+      const targetNodeExists = graphData.nodes.some(node => node.data.id === edge.data.target);
+      if (!targetNodeExists || edge.data.target === "") {
+         console.error('Target node not found for edge, removing edge:', edge);
+         return false; // Do not include this edge in the new array
+      }
+      return true; // Include this edge in the new array
+   });
+   
    for (let node of graphData.nodes) {
       if (node.data.id == "") {
          node.data.id = "null"
