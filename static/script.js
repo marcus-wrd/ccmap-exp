@@ -347,8 +347,8 @@ async function sendMessage() {
    function savePNG() {
       var png64 = cy.png({
          output: 'base64',
-         scale: 5
-      }); // Increasing the scale to 5 times the original size
+         scale: 8
+      }); // Increasing the scale to 8 times the original size
       var link = document.createElement('a');
       link.download = "data:image/png;base64," + png64;
       link.href = "data:image/png;base64," + png64;
