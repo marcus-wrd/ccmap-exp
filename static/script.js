@@ -343,17 +343,27 @@ async function sendMessage() {
    });
 
 
-   // Function to handle PNG export
-   function savePNG() {
-      var png64 = cy.png({
-         output: 'base64',
-         scale: 8
-      }); // Increasing the scale to 8 times the original size
-      var link = document.createElement('a');
-      link.download = "data:image/png;base64," + png64;
-      link.href = "data:image/png;base64," + png64;
-      link.click();
-   }
+// Function to handle PNG export
+function savePNG() {
+   var png64 = cy.png({
+      output: 'base64',
+      scale: 8 // Increasing the scale to 8 times the original size
+   });
+
+   // Get the label of the first node
+   var firstNodeLabel = cy.nodes().first().data('label');
+   // Replace any characters that are not suitable for filenames
+   var safeLabel = firstNodeLabel.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+
+   // Create a link and trigger the download
+   var link = document.createElement('a');
+   link.download = safeLabel + ".png"; // Set the download attribute to the safe label
+   link.href = "data:image/png;base64," + png64;
+   document.body.appendChild(link); // Append the link to the body
+   link.click(); // Simulate click to trigger download
+   document.body.removeChild(link); // Remove the link after triggering the download
+}
+
    document.getElementById('regenerate-btn').style.display = 'block';
    // Store the original message in the cy instance's data
    cy.data('originalMessage', message);
