@@ -20,9 +20,14 @@ async function sendMessage() {
    inputElement.value = '';
 
    // Display the user's message
-   const chatMessages = document.getElementById('chat-messages');
+   // Vulnerable part: Directly inserting user input into the DOM can lead to XSS.
    chatMessages.innerHTML = '';
-   chatMessages.innerHTML += `<div class="message">User: ${message2}</div>`;
+   const userMessageDiv = document.createElement('div');
+   userMessageDiv.className = 'message';
+   userMessageDiv.textContent = `User: ${message}`; // Secure by using textContent instead of innerHTML
+   chatMessages.appendChild(userMessageDiv);
+
+   
 
    const cyContainer = document.createElement('div');
    cyContainer.className = 'cy-container';
@@ -165,7 +170,23 @@ async function sendMessage() {
             content: 'Link to',
             select: function (ele) {
                const sourceNode = ele;
+               // Vulnerable part: prompt() function accepts user input which may be used to perform actions
                const targetNodeId = prompt("Enter the label of the node to connect:");
+               
+               // Secure version: Validate the input before using it
+               const targetNodeId = prompt("Enter the label of the node to connect:");
+               if (validateNodeId(targetNodeId)) {
+                  // Rest of your code
+               } else {
+                  alert("Invalid node ID");
+               }
+               
+               // Implement the validation function
+               function validateNodeId(nodeId) {
+                  // Add your validation logic here (for example, check if nodeId matches a specific pattern)
+                  return /^[a-zA-Z0-9-_]+$/.test(nodeId); // This is a basic example that allows alphanumeric characters, dashes, and underscores.
+               }
+
                const targetNode = cy.getElementById(targetNodeId);
                if (targetNode && sourceNode.id() !== targetNodeId) {
                   if (cy.$(`edge[source="${sourceNode.id()}"][target="${targetNodeId}"]`).length === 0) {
@@ -388,6 +409,13 @@ document.getElementById('regenerate-btn').addEventListener('click', function() {
       }
 });
 
+// Service worker registration should be secure
 if ("serviceWorker" in navigator) {
-   navigator.serviceWorker.register("static/generate-sw.js");
+   // Check if the page is served over HTTPS
+   if (window.location.protocol === 'https:') {
+      navigator.serviceWorker.register("/service-worker.js");
+   } else {
+      console.error("Service worker registration failed. The page must be served over HTTPS.");
+   }
 }
+
