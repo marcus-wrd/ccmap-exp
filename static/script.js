@@ -20,7 +20,6 @@ async function sendMessage() {
    const message2 = message.replace(/(?:\r\n|\r|\n)/g, ' <br> ');
    inputElement.value = '';
 
-   const chatMessages = 
    // Display the user's message
    const chatMessages = document.getElementById('chat-messages');
    chatMessages.innerHTML = '';
