@@ -14,6 +14,7 @@ document.getElementById('input-message').addEventListener('input', function() {
 
 let cy = null; // global cy variable
 async function sendMessage() {
+   alert("Sending!");
    const inputElement = document.getElementById('input-message');
    const message = inputElement.value;
    const message2 = message.replace(/(?:\r\n|\r|\n)/g, ' <br> ');
