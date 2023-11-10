@@ -20,8 +20,9 @@ async function sendMessage() {
    const message2 = message.replace(/(?:\r\n|\r|\n)/g, ' <br> ');
    inputElement.value = '';
 
+   const chatMessages = 
    // Display the user's message
-   // Vulnerable part: Directly inserting user input into the DOM can lead to XSS.
+   const chatMessages = document.getElementById('chat-messages');
    chatMessages.innerHTML = '';
    const userMessageDiv = document.createElement('div');
    userMessageDiv.className = 'message';
@@ -428,7 +429,7 @@ document.getElementById('regenerate-btn').addEventListener('click', function() {
 if ("serviceWorker" in navigator) {
    // Check if the page is served over HTTPS
    if (window.location.protocol === 'https:') {
-      navigator.serviceWorker.register("/service-worker.js");
+      navigator.serviceWorker.register("/generate-sw.js");
    } else {
       console.error("Service worker registration failed. The page must be served over HTTPS.");
    }
