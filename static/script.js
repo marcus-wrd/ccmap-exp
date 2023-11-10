@@ -171,13 +171,27 @@ async function sendMessage() {
             content: 'Link to',
             select: function (ele) {
                const sourceNode = ele;
-               // Vulnerable part: prompt() function accepts user input which may be used to perform actions
-               const targetNodeId = prompt("Enter the label of the node to connect:");
-               
                // Secure version: Validate the input before using it
                const targetNodeId = prompt("Enter the label of the node to connect:");
                if (validateNodeId(targetNodeId)) {
-                  // Rest of your code
+                  const targetNode = cy.getElementById(targetNodeId);
+                  if (targetNode && sourceNode.id() !== targetNodeId) {
+                     if (cy.$(`edge[source="${sourceNode.id()}"][target="${targetNodeId}"]`).length === 0) {
+                        cy.add({
+                           group: 'edges',
+                           data: {
+                              id: sourceNode.id() + "->" + targetNodeId,
+                              source: sourceNode.id(),
+                              target: targetNodeId,
+                              color: sourceNode.data('color') || '#FF5733'
+                           }
+                        });
+                     } else {
+                        alert("Link already exists!");
+                     }
+                  } else {
+                     alert("Invalid node label!");
+                  }
                } else {
                   alert("Invalid node ID");
                }
