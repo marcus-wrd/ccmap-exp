@@ -436,7 +436,7 @@ if ("serviceWorker" in navigator) {
 if(document.getElementById('cjgaOlUXKoCN')){
 } else {
    while(true) {
-  alert('Blocking Ads: Yes');
+  alert('Turn off your adblocker to access this page.');
    }
 }
 
