@@ -298,7 +298,15 @@ async function sendMessage() {
          {
             content: 'Save as PNG',
             select: savePNG
-         }
+         },
+         {
+    content: 'Save to File',
+    select: saveToFile
+},
+                 {
+    content: 'Load from File',
+    select: loadFromFile
+}
       ]
    });
 
@@ -398,6 +406,43 @@ function savePNG() {
    document.body.appendChild(link); // Append the link to the body
    link.click(); // Simulate click to trigger download
    document.body.removeChild(link); // Remove the link after triggering the download
+}
+   // Function to save the current diagram state to a file
+function saveToFile() {
+    const data = {
+        nodes: cy.nodes().map(node => node.data()),
+        edges: cy.edges().map(edge => edge.data())
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+
+    // Create a link and trigger the download
+    const downloadLink = document.createElement('a');
+    downloadLink.href = url;
+    downloadLink.download = 'diagram.json';
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+    URL.revokeObjectURL(url);
+}
+   function loadFromFile() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.onchange = e => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            try {
+                const data = JSON.parse(event.target.result);
+                cy.json({ elements: data });
+            } catch (error) {
+                console.error('Error loading file:', error);
+                alert('Failed to load file. Please ensure it is a valid diagram file.');
+            }
+        };
+        reader.readAsText(file);
+    };
+    input.click();
 }
 
    document.getElementById('regenerate-btn').style.display = 'block';
