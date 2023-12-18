@@ -402,8 +402,10 @@ function savePNG() {
    // Function to save the current diagram state to a file
 function saveToFile() {
     const data = {
-        nodes: cy.nodes().map(node => node.data()),
-        edges: cy.edges().map(edge => edge.data())
+        elements: {
+            nodes: cy.nodes().map(node => ({ data: node.data() })),
+            edges: cy.edges().map(edge => ({ data: edge.data() }))
+        }
     };
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
@@ -426,7 +428,8 @@ function saveToFile() {
         reader.onload = function(event) {
             try {
                 const data = JSON.parse(event.target.result);
-                cy.json({ elements: data });
+                cy.json(data); // Load the data directly
+                cy.layout({ name: 'preset' }).run(); // Reapply layout if necessary
             } catch (error) {
                 console.error('Error loading file:', error);
                 alert('Failed to load file. Please ensure it is a valid diagram file.');
@@ -436,6 +439,7 @@ function saveToFile() {
     };
     input.click();
 }
+
 
    document.getElementById('regenerate-btn').style.display = 'block';
    // Store the original message in the cy instance's data
