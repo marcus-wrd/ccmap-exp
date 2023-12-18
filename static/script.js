@@ -288,15 +288,15 @@ async function sendMessage() {
             select: addManualNode
          },
          {
-            content: 'Save to image',
+            content: 'Save as PNG',
             select: savePNG
          },
          {
-    content: 'Save state',
+    content: 'Save to file',
     select: saveToFile
 },
                  {
-    content: 'Load state',
+    content: 'Load from file',
     select: loadFromFile
 }
       ]
