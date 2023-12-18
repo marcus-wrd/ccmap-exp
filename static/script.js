@@ -254,16 +254,8 @@ async function sendMessage() {
    cy.cxtmenu({
       selector: 'core',
       commands: [{
-            content: 'Concept map 1',
-            select: function () {
-               cy.layout({
-                  animated: true,
-                  name: 'dagre',
-               }).run();
-            }
-         },
          {
-            content: 'Concept map 2',
+            content: 'Concept map',
             select: function () {
                cy.layout({
                  name: 'elk',
@@ -296,15 +288,15 @@ async function sendMessage() {
             select: addManualNode
          },
          {
-            content: 'Save as PNG',
+            content: 'Save to image',
             select: savePNG
          },
          {
-    content: 'Save to File',
+    content: 'Save state',
     select: saveToFile
 },
                  {
-    content: 'Load from File',
+    content: 'Load state',
     select: loadFromFile
 }
       ]
