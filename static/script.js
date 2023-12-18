@@ -253,7 +253,7 @@ async function sendMessage() {
    // Core Context Menu
    cy.cxtmenu({
       selector: 'core',
-      commands: [{
+      commands: [
          {
             content: 'Concept map',
             select: function () {
