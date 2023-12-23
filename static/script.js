@@ -51,7 +51,7 @@ async function sendMessage() {
       })
    });
 
-   const graphData = await response.jsawait on();
+   const graphData = await response.json();
    // Check if the graphData has nodes and edges
    if (!graphData || !graphData.nodes || !graphData.edges) {
       console.error('Invalid graph data:', graphData);
