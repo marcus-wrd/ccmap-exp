@@ -16,7 +16,7 @@ async function on() {
    await new Promise(r => setTimeout(r, 2500));
    document.getElementById("overlay").click();
 }
-await on();
+on();
 let cy = null; // global cy variable
 async function sendMessage() {
    document.getElementById("text").innerText = "Generating concept map now. Please wait...";
