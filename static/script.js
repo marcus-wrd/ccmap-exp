@@ -11,16 +11,16 @@ document.getElementById('input-message').addEventListener('input', function() {
       textarea.style.height = '90px'; // After 5 lines, restrict to 90px
    }
 });
-function on() {
+async function on() {
    document.getElementById("overlay").style.display = "block";
    await new Promise(r => setTimeout(r, 2500));
    document.getElementById("overlay").click();
 }
-on();
+await on();
 let cy = null; // global cy variable
 async function sendMessage() {
    document.getElementById("text").innerText = "Generating concept map now. Please wait...";
-   on();
+   await on();
    const inputElement = document.getElementById('input-message');
    const message = inputElement.value;
    const message2 = message.replace(/(?:\r\n|\r|\n)/g, ' <br> ');
@@ -51,7 +51,7 @@ async function sendMessage() {
       })
    });
 
-   const graphData = await response.json();
+   const graphData = await response.jsawait on();
    // Check if the graphData has nodes and edges
    if (!graphData || !graphData.nodes || !graphData.edges) {
       console.error('Invalid graph data:', graphData);
@@ -194,15 +194,15 @@ async function sendMessage() {
                         });
                      } else {
                         document.getElementById("text").innerText = "Link between nodes already exists!";
-                        on();
+                        await on();
                      }
                   } else {
                      document.getElementById("text").innerText = "Invalid node label. Please enter a mix of just alphanumeric characters, dashes, and underscores.";
-                     on();
+                     await on();
                   }
                } else {
                   document.getElementById("text").innerText = "Invalid node ID. Please enter a mix of just alphanumeric characters, dashes, and underscores";
-                  on();
+                  await on();
                }
                
                // Implement the validation function
@@ -225,11 +225,11 @@ async function sendMessage() {
                      });
                   } else {
                      document.getElementById("text").innerText = "Link between nodes already exists!";
-                     on();
+                     await on();
                   }
                } else {
                   document.getElementById("text").innerText = "Invalid node label. Please enter a mix of just alphanumeric characters, dashes, and underscores.";
-                  on();
+                  await on();
                }
             }
          },
@@ -381,7 +381,7 @@ async function sendMessage() {
             selectedNode.remove();
          } else {
             document.getElementById("text").innerText = "Select a node first to remove it!";
-            on();
+            await on();
          }
       }
    }
@@ -445,7 +445,7 @@ function saveToFile() {
             } catch (error) {
                 console.error('Error loading file:', error);
                 document.getElementById("text").innerText = "Failed to load file. Please ensure it is a valid .json file.";
-                on();
+                await on();
             }
         };
         reader.readAsText(file);
@@ -472,11 +472,11 @@ document.getElementById('regenerate-btn').addEventListener('click', function() {
             sendMessage();
          } else {
             document.getElementById("text").innerText = "Original message to regenerate not found.";
-            on();
+            await on();
          }
       } else {
             document.getElementById("text").innerText = "Concept map not found. May be due to blocker of sorts.";
-            on();
+            await on();
       }
 });
 
@@ -484,7 +484,7 @@ document.getElementById('regenerate-btn').addEventListener('click', function() {
 if ("serviceWorker" in navigator) {
    // Check if the page is served over HTTPS
    if (window.location.protocol === 'https:') {
-      navigator.serviceWorker.register("/generate-sw.js");
+      navigator.serviceWorker.register("/static/generate-sw.js");
    } else {
       console.error("Service worker registration failed. The page must be served over HTTPS.");
    }
