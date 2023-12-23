@@ -478,10 +478,4 @@ if ("serviceWorker" in navigator) {
       console.error("Service worker registration failed. The page must be served over HTTPS.");
    }
 }
-if(document.getElementById('cjgaOlUXKoCN')){
-} else {
-   while(true) {
-  alert('Turn off your adblocker to access this page.');
-   }
-}
 
