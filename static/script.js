@@ -11,10 +11,14 @@ document.getElementById('input-message').addEventListener('input', function() {
       textarea.style.height = '90px'; // After 5 lines, restrict to 90px
    }
 });
-
+function on() {
+   document.getElementById("overlay").style.display = "block";
+}
+on();
 let cy = null; // global cy variable
 async function sendMessage() {
-   alert("Sending!");
+   document.getElementById("text").innerText = "Generating concept map now. Please wait...";
+   on();
    const inputElement = document.getElementById('input-message');
    const message = inputElement.value;
    const message2 = message.replace(/(?:\r\n|\r|\n)/g, ' <br> ');
