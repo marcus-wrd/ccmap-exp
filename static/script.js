@@ -484,7 +484,7 @@ document.getElementById('regenerate-btn').addEventListener('click', async functi
 if ("serviceWorker" in navigator) {
    // Check if the page is served over HTTPS
    if (window.location.protocol === 'https:') {
-      navigator.serviceWorker.register("/static/generate-sw.js");
+      navigator.serviceWorker.register("/generate-sw.js");
    } else {
       console.error("Service worker registration failed. The page must be served over HTTPS.");
    }
