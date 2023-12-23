@@ -13,6 +13,8 @@ document.getElementById('input-message').addEventListener('input', function() {
 });
 function on() {
    document.getElementById("overlay").style.display = "block";
+   await new Promise(r => setTimeout(r, 2500));
+   document.getElementById("overlay").click();
 }
 on();
 let cy = null; // global cy variable
@@ -191,13 +193,16 @@ async function sendMessage() {
                            }
                         });
                      } else {
-                        alert("Link already exists!");
+                        document.getElementById("text").innerText = "Link between nodes already exists!";
+                        on();
                      }
                   } else {
-                     alert("Invalid node label!");
+                     document.getElementById("text").innerText = "Invalid node label. Please enter a mix of just alphanumeric characters, dashes, and underscores.";
+                     on();
                   }
                } else {
-                  alert("Invalid node ID");
+                  document.getElementById("text").innerText = "Invalid node ID. Please enter a mix of just alphanumeric characters, dashes, and underscores";
+                  on();
                }
                
                // Implement the validation function
@@ -219,10 +224,12 @@ async function sendMessage() {
                         }
                      });
                   } else {
-                     alert("Link already exists!");
+                     document.getElementById("text").innerText = "Link between nodes already exists!";
+                     on();
                   }
                } else {
-                  alert("Invalid node label!");
+                  document.getElementById("text").innerText = "Invalid node label. Please enter a mix of just alphanumeric characters, dashes, and underscores.";
+                  on();
                }
             }
          },
@@ -373,7 +380,8 @@ async function sendMessage() {
             selectedNode.connectedEdges().remove();
             selectedNode.remove();
          } else {
-            alert("Select a node first to remove it!");
+            document.getElementById("text").innerText = "Select a node first to remove it!";
+            on();
          }
       }
    }
@@ -436,7 +444,8 @@ function saveToFile() {
                 cy.layout({ name: 'preset' }).run(); // Reapply layout if necessary
             } catch (error) {
                 console.error('Error loading file:', error);
-                alert('Failed to load file. Please ensure it is a valid diagram file.');
+                document.getElementById("text").innerText = "Failed to load file. Please ensure it is a valid .json file.";
+                on();
             }
         };
         reader.readAsText(file);
@@ -462,10 +471,12 @@ document.getElementById('regenerate-btn').addEventListener('click', function() {
             // Call the sendMessage function
             sendMessage();
          } else {
-            alert('Original message not found.');
+            document.getElementById("text").innerText = "Original message to regenerate not found.";
+            on();
          }
       } else {
-         alert('Concept map not found.');
+            document.getElementById("text").innerText = "Concept map not found. May be due to blocker of sorts.";
+            on();
       }
 });
 
