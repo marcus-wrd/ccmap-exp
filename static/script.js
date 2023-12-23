@@ -175,7 +175,7 @@ async function sendMessage() {
          },
          {
             content: 'Link to',
-            select: function (ele) {
+            select: async function (ele) {
                const sourceNode = ele;
                // Secure version: Validate the input before using it
                const targetNodeId = prompt("Enter the label of the node to connect:");
@@ -373,7 +373,7 @@ async function sendMessage() {
       }
    }
 
-   function removeSelectedNode() {
+   async function removeSelectedNode() {
       if (cy) {
          const selectedNode = cy.$('node:selected');
          if (selectedNode.length) {
@@ -412,7 +412,7 @@ function savePNG() {
    document.body.removeChild(link); // Remove the link after triggering the download
 }
    // Function to save the current diagram state to a file
-function saveToFile() {
+async function saveToFile() {
     const data = {
         elements: {
             nodes: cy.nodes().map(node => ({ data: node.data() })),
@@ -431,7 +431,7 @@ function saveToFile() {
     document.body.removeChild(downloadLink);
     URL.revokeObjectURL(url);
 }
-   function loadFromFile() {
+   async function loadFromFile() {
     const input = document.createElement('input');
     input.type = 'file';
     input.onchange = e => {
@@ -460,7 +460,7 @@ function saveToFile() {
 
 }
 
-document.getElementById('regenerate-btn').addEventListener('click', function() {
+document.getElementById('regenerate-btn').addEventListener('click', async function() {
       document.getElementById('chat-messages').innerHTML = '';
       if (cy) {
          // If cy is defined, get the original message from the cy instance
