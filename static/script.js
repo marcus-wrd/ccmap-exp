@@ -157,10 +157,15 @@ async function sendMessage() {
          }
       ],
       layout: {
-         name: 'dagre',
-         fit: true,
-         padding: 13,
-         spacingFactor: 1.2 // Adjust this value to find the desired edge length
+                 name: 'elk',
+                 elk: {
+                   animated: true,
+                   zoomToFit: true,
+                   algorithm: 'mrtree',
+                   'spacing.nodeNode': 40,
+                   'spacing.edgeNode': 20,
+                   separateConnectedComponents: false,
+                 },
       }
    });
    // Node Context Menu
