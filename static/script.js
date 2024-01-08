@@ -331,7 +331,7 @@ async function sendMessage() {
 				select: addManualNode
 			},
 		        {
-			    	content: 'Colors',
+			    	content: 'Refresh colors',
 		            	select: refreshColorCoding
 		        },
 			() => cy.$(':selected').length === 0 ? [			
