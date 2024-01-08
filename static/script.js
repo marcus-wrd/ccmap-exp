@@ -192,6 +192,7 @@ async function sendMessage() {
 	// Node Context Menu
 	cy.cxtmenu({
 		selector: 'node',
+		openMenuEvents: 'taphold',
 		commands: [{
 				content: 'Delete',
 				select: function(ele) {
@@ -286,6 +287,7 @@ async function sendMessage() {
 	// Edge Context Menu
 	cy.cxtmenu({
 		selector: 'edge',
+		openMenuEvents: 'taphold',
 		commands: [{
 			content: 'Delete',
 			select: function(ele) {
@@ -297,6 +299,7 @@ async function sendMessage() {
 	// Core Context Menu
 	cy.cxtmenu({
 		selector: 'core',
+		openMenuEvents: 'taphold',
 		commands: [{
 				content: 'Concept map',
 				select: function() {
