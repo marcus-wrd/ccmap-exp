@@ -306,7 +306,7 @@ async function sendMessage() {
 			},
          {
             content: 'Change color',
-            select: function (ele) {
+            select: asyncfunction (ele) {
 		await on2();
                 ele.data('color', color);
             }
