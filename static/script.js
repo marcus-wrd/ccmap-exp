@@ -116,68 +116,37 @@ async function sendMessage() {
 			}
 		}
 	}
-
+	let colors = ["#FF5733", "#33FF57", "#3357FF", "#FF33FF", "#FF8333"]; // Example colors
 	// Add refresh function
 	function refreshColorCoding() {
-		const colors = ["#FF5733", "#33FF57", "#3357FF", "#FF33FF", "#FF8333"];
+		// In your sendMessage function:
+		let parentNode = graphData.nodes[0]; // Assuming the 1st node is the main node
+	
+		// Dictionary to store node-color mappings
 		let nodeColorMapping = {};
-
+	
 		for (let i = 0; i < graphData.edges.length; i++) {
 			let edge = graphData.edges[i];
-
+	
+			// If this edge starts at the parent node
 			if (edge.data.source === parentNode.data.id) {
 				let color = colors[i % colors.length];
-
+	
+				// Color the edge and target node
 				edge.data.color = color;
 				let targetNode = graphData.nodes.find(node => node.data.id === edge.data.target);
-				if (targetNode) {
+				if (targetNode) { // Check if targetNode is not undefined
 					targetNode.data.color = color;
 					nodeColorMapping[targetNode.data.id] = color;
-
+					// Recursively color the descendants of this target node
 					colorDescendants(targetNode.data.id, color, graphData.edges, graphData.nodes, nodeColorMapping);
 				} else {
 					console.error('Target node not found for edge:', edge);
 				}
 			}
 		}
-
-		cy.elements().forEach(ele => {
-			if (ele.isNode()) {
-				ele.data('color', nodeColorMapping[ele.data('id')]);
-			} else if (ele.isEdge()) {
-				ele.data('color', nodeColorMapping[ele.data('source')]);
-			}
-		});
 	}
-
-	// In your sendMessage function:
-	let parentNode = graphData.nodes[0]; // Assuming the 1st node is the main node
-	const colors = ["#FF5733", "#33FF57", "#3357FF", "#FF33FF", "#FF8333"]; // Example colors
-
-	// Dictionary to store node-color mappings
-	let nodeColorMapping = {};
-
-	for (let i = 0; i < graphData.edges.length; i++) {
-		let edge = graphData.edges[i];
-
-		// If this edge starts at the parent node
-		if (edge.data.source === parentNode.data.id) {
-			let color = colors[i % colors.length];
-
-			// Color the edge and target node
-			edge.data.color = color;
-			let targetNode = graphData.nodes.find(node => node.data.id === edge.data.target);
-			if (targetNode) { // Check if targetNode is not undefined
-				targetNode.data.color = color;
-				nodeColorMapping[targetNode.data.id] = color;
-				// Recursively color the descendants of this target node
-				colorDescendants(targetNode.data.id, color, graphData.edges, graphData.nodes, nodeColorMapping);
-			} else {
-				console.error('Target node not found for edge:', edge);
-			}
-		}
-	}
-
+	refreshColorCoding()
 
 	cy = cytoscape({
 		container: cyContainer,
@@ -361,22 +330,29 @@ async function sendMessage() {
 				content: 'Add node',
 				select: addManualNode
 			},
-			{
-				content: 'Save as PNG',
-				select: savePNG
-			},
-			{
-				content: 'Save to file',
-				select: saveToFile
-			},
-			{
-				content: 'Load from file',
-				select: loadFromFile
-			},
-         {
-            content: 'Refresh color coding',
-            select: refreshColorCoding
-         },
+		        {
+			    	content: 'Colors',
+		            	select: refreshColorCoding
+		        },
+			() => cy.$(':selected').length === 0 ? [			
+				{
+					content: 'Save as PNG file (not editable)',
+					select: savePNG
+				},
+				{
+					content: 'Save to config file',
+					select: saveToFile
+				},
+				{
+					content: 'Load from config file',
+					select: loadFromFile
+				}
+			]  : [{
+	                    content: 'File operations',
+	                    select: function () {
+	                        
+	                    }
+	                }]
 		]
 	});
 
@@ -410,7 +386,7 @@ async function sendMessage() {
 	cy.edgehandles(edgehandlesDefaults);
 	// New function to add manual nodes
 	function addManualNode() {
-		const nodeId = prompt("Enter a unique node ID:", "Edit me by double-clicking...");
+		const nodeId = prompt("Enter a unique node ID:", "Example node ID");
 		if (nodeId && cy) {
 			cy.add({
 				group: 'nodes',
