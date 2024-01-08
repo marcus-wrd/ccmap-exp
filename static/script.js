@@ -337,24 +337,25 @@ async function sendMessage() {
 			    	content: 'Refresh colors',
 		            	select: refreshColorCoding
 		        },
-			() => cy.$(':selected').length === 0 ? [			
-				{
-					content: 'Save as PNG file (not editable)',
-					select: savePNG
-				},
-				{
-					content: 'Save to config file',
-					select: saveToFile
-				},
-				{
-					content: 'Load from config file',
-					select: loadFromFile
-				}
-			]  : [{
-	                    content: 'File operations',
-	                    select: function () {
+			[{
+	        		content: 'File operations',
+	                	select: function () {
 	                        
-	                    }
+	                	},
+				submenu: {
+					{
+						content: 'Save as PNG file (not editable)',
+						select: savePNG
+					},
+					{
+						content: 'Save to config file',
+						select: saveToFile
+					},
+					{
+						content: 'Load from config file',
+						select: loadFromFile
+					}
+			 	},
 	                }]
 		]
 	});
