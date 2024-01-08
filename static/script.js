@@ -339,10 +339,7 @@ async function sendMessage() {
 		        },
 			[{
 	        		content: 'File operations',
-	                	select: function () {
-	                        
-	                	},
-				submenu: {
+				submenu: [
 					{
 						content: 'Save as PNG file (not editable)',
 						select: savePNG
@@ -355,7 +352,7 @@ async function sendMessage() {
 						content: 'Load from config file',
 						select: loadFromFile
 					}
-			 	},
+			 	],
 	                }]
 		]
 	});
