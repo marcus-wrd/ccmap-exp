@@ -16,8 +16,14 @@ async function on() {
 	await new Promise(r => setTimeout(r, 2500));
 	document.getElementById("overlay").click();
 }
+async function on2() {
+	document.getElementById("overlay2").style.display = "block";
+	await new Promise(r => setTimeout(r, 2500));
+	off2();
+}
 on();
 let cy = null; // global cy variable
+let clr = null;
 async function sendMessage() {
 	document.getElementById("text").innerText = "Generating concept map now. Please wait...";
 	await on();
@@ -25,11 +31,12 @@ async function sendMessage() {
 	const colorPicker = new iro.ColorPicker("#color-picker");
 	// Add event listener to color picker
 	colorPicker.on('color:change', function(color) {
-		const selectedNode = cy.$('node:selected');
+		/*const selectedNode = cy.$('node:selected');
 		if (selectedNode.length) {
 			selectedNode.data('color', color.hexString);
 			selectedNode.connectedEdges().data('color', color.hexString);
-		}
+		}*/
+		clr = color.hexString;
 	});
 	const inputElement = document.getElementById('input-message');
 	const message = inputElement.value;
@@ -300,7 +307,8 @@ async function sendMessage() {
          {
             content: 'Change color',
             select: function (ele) {
-                colorPicker.color.hexString = ele.data('color');
+		await on2();
+                ele.data('color', color);
             }
          },
 		]
